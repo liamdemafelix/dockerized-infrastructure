@@ -75,6 +75,13 @@ usermod -aG docker ${DOCKER_USER}
 mkdir -p /opt/containers/{sonarr,radarr,jackett,rutorrent,caddy}
 chown -R ${DOCKER_USER}:${DOCKER_USER} /opt/containers
 
+# Download the docker-compose.yml file and use the correct IDs
+UID=`id -u ${DOCKER_USER}`
+GID=`id -g ${DOCKER_USER}`
+wget https://github.com/liamdemafelix/dockerized-infrastructure/raw/main/docker-compose.yml
+sed -i "s/%UID%/${UID}/g" docker-compose.yml
+sed -i "s/%GID%/${$GID}/g" docker-compose.yml
+
 # Done!
 clear
 echo "Setup complete."

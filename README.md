@@ -8,10 +8,32 @@ This is my personal server dockerized for everyone's convenience (primarily mine
 
 # Pre-requisites
 
-* Docker
-* `docker-compose`, included in `$PATH`
+* A clean Ubuntu LTS server
+* Root SSH access
 
-Make sure to edit the environment variables to correctly reflect your mounts and file paths.
+# Setting Up
+
+1. Create the needed directory. You **must be on the `/opt/dockerized-infrastructure` folder**:
+```
+mkdir /opt/dockerized-infrastructure
+```
+2. Change your shell's working directory to the newly-created folder:
+```
+cd /opt/dockerized-infrastructure
+```
+3. Download the setup script and make it executable
+```
+wget https://github.com/liamdemafelix/dockerized-infrastructure/raw/main/setup.sh && chmod +x setup.sh
+```
+4. Download the sample environment file and name it as `.env`
+```
+wget https://github.com/liamdemafelix/dockerized-infrastructure/raw/main/infrastructure.env -O .env
+```
+5. **IMPORTANT**: Edit the `.env` file to reflect your settings. Please note that `DOCKER_USER` must **not** exist on the system, as it will be automatically created. Additionally, if the paths in the `.env` file already exist, ensure that you `chown` them to `DOCKER_USER` **AFTER** `setup.sh` has run.
+6. Run the setup script:
+```
+./setup.sh
+```
 
 # License
 

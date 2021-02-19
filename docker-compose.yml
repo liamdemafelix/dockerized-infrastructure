@@ -1,3 +1,6 @@
+# Values surrounded by % (like %UID% and %GID%) are replaced
+# by their correct values by the setup script. Leave them be.
+
 version: "3"
 
 services:
@@ -5,8 +8,8 @@ services:
     image: ghcr.io/linuxserver/sonarr
     container_name: "${SONARR_CONTAINER_NAME}"
     environment:
-      - PUID=${SONARR_PUID}
-      - PGID=${SONARR_PGID}
+      - PUID=%UID%
+      - PGID=%GID%
       - TZ=${SONARR_TIMEZONE}
     volumes:
       - /opt/containers/sonarr:/config
@@ -18,8 +21,8 @@ services:
     image: ghcr.io/linuxserver/radarr
     container_name: "${RADARR_CONTAINER_NAME}"
     environment:
-      - PUID=${RADARR_PUID}
-      - PGID=${RADARR_PGID}
+      - PUID=%UID%
+      - PGID=%GID%
       - TZ=${RADARR_TIMEZONE}
     volumes:
       - /opt/containers/radarr:/config
@@ -31,8 +34,8 @@ services:
     image: ghcr.io/linuxserver/jackett
     container_name: "${JACKETT_CONTAINER_NAME}"
     environment:
-      - PUID=${JACKETT_PUID}
-      - PGID=${JACKETT_PGID}
+      - PUID=%UID%
+      - PGID=%GID%
       - TZ=${JACKETT_TIMEZONE}
     volumes:
       - /opt/containers/jackett:/config
@@ -42,8 +45,8 @@ services:
     image: ghcr.io/linuxserver/rutorrent
     container_name: "${RUTORRENT_CONTAINER_NAME}"
     environment:
-      - PUID=${RUTORRENT_PUID}
-      - PGID=${RUTORRENT_PGID}
+      - PUID=%UID%
+      - PGID=%GID%
     volumes:
       - /opt/containers/rutorrent:/config
       - ${RUTORRENT_HOST_DOWNLOADS_PATH}:/downloads
