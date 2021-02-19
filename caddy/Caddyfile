@@ -18,5 +18,5 @@
     basicauth /* {
         %rutorrent_user% %rutorrent_pass%
     }
-    reveser_proxy %rutorrent_name%:80
+    reverse_proxy %rutorrent_name%:80
 }
