@@ -10,6 +10,7 @@ This is my personal server dockerized for everyone's convenience (primarily mine
 
 * A clean Ubuntu LTS server
 * Root SSH access
+* Git (`apt-get install git -y`)
 
 # Setting Up
 
@@ -17,25 +18,16 @@ This is my personal server dockerized for everyone's convenience (primarily mine
 ```
 git clone https://github.com/liamdemafelix/dockerized-infrastructure.git /opt/dockerized-infrastructure
 ```
-
-2. Create the needed directory. You **must be on the `/opt/dockerized-infrastructure` folder**:
-```
-mkdir /opt/dockerized-infrastructure
-```
 2. Change your shell's working directory to the newly-created folder:
 ```
 cd /opt/dockerized-infrastructure
 ```
-3. Download the setup script and make it executable
+3. Copy the sample `infrastructure.env` file to `.env` for editing
 ```
-wget https://github.com/liamdemafelix/dockerized-infrastructure/raw/main/setup.sh && chmod +x setup.sh
+cp infrastructure.env .env
 ```
-4. Download the sample environment file and name it as `.env`
-```
-wget https://github.com/liamdemafelix/dockerized-infrastructure/raw/main/infrastructure.env -O .env
-```
-5. **IMPORTANT**: Edit the `.env` file to reflect your settings. Please note that `DOCKER_USER` must **not** exist on the system, as it will be automatically created. Additionally, if the paths in the `.env` file already exist, ensure that you `chown` them to `DOCKER_USER` **AFTER** `setup.sh` has run.
-6. Run the setup script:
+4. **IMPORTANT**: Edit the `.env` file to reflect your settings. Please note that `DOCKER_USER` must **not** exist on the system, as it will be automatically created. Additionally, if the paths in the `.env` file already exist, ensure that you `chown` them to `DOCKER_USER` **AFTER** `setup.sh` has run.
+5. Run the setup script:
 ```
 ./setup.sh
 ```
