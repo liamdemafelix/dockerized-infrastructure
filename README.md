@@ -4,7 +4,12 @@ This is my personal server dockerized for everyone's convenience (primarily mine
 
 # Applications
 
-> TODO: List applications
+* Caddy
+* Sonarr
+* Radarr
+* Jackett
+* ruTorrent
+* Nextcloud + MariaDB + Redis (coming soon)
 
 # Pre-requisites
 
