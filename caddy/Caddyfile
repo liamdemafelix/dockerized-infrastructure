@@ -1,0 +1,22 @@
+# Sonarr
+%sonarr_host% {
+    reverse_proxy %sonarr_name%:8989
+}
+
+# Radarr
+%radarr_host% {
+    reverse_proxy %radarr_name%:7878
+}
+
+# Jackett
+%jackett_host% {
+    reverse_proxy %jackett_name%:9117
+}
+
+# ruTorrent
+%rutorrent_host% {
+    basicauth /* {
+        %rutorrent_user% %rutorrent_pass%
+    }
+    reveser_proxy %rutorrent_name%:80
+}

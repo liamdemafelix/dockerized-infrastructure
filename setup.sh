@@ -73,6 +73,7 @@ usermod -aG docker ${DOCKER_USER}
 
 # Create working directories and assign ownership to DOCKER_USER
 mkdir -p /opt/containers/{sonarr,radarr,jackett,rutorrent,caddy}
+mkdir -p /opt/containers/caddy/{config,data}
 chown -R ${DOCKER_USER}:${DOCKER_USER} /opt/containers
 
 # Download the docker-compose.yml file and use the correct IDs
