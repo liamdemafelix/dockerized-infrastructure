@@ -76,13 +76,16 @@ mkdir -p /opt/containers/{sonarr,radarr,jackett,rutorrent,caddy}
 mkdir -p /opt/containers/caddy/{config,data}
 chown -R ${DOCKER_USER}:${DOCKER_USER} /opt/containers
 
+# Get the host IP for Docker
+HOST_IP=`ip -4 addr show scope global dev docker0 | grep inet | awk '{print \$2}' | cut -d / -f 1`
+
 # Download the docker-compose.yml file and use the correct IDs
 PUID=`id -u ${DOCKER_USER}`
 PGID=`id -g ${DOCKER_USER}`
-wget https://github.com/liamdemafelix/dockerized-infrastructure/raw/main/docker-compose.yml
+cp docker-compose.yml.sample docker-compose.yml
 sed -i "s/%UID%/${PUID}/g" docker-compose.yml
 sed -i "s/%GID%/${PGID}/g" docker-compose.yml
-docker-compose pull
+export HOST_IP=$HOST_IP && docker-compose --env-file /opt/dockerized-infrastructure/.env pull
 
 # Fix permissions for this folder
 chown -R ${DOCKER_USER}:${DOCKER_USER} /opt/dockerized-infrastructure
