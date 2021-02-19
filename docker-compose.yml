@@ -1,0 +1,54 @@
+version: "3"
+
+services:
+  sonarr:
+    image: ghcr.io/linuxserver/sonarr
+    container_name: "${SONARR_CONTAINER_NAME}"
+    environment:
+      - PUID=${SONARR_PUID}
+      - PGID=${SONARR_PGID}
+      - TZ=${SONARR_TIMEZONE}
+    volumes:
+      - /opt/containers/sonarr:/config
+      - ${SONARR_HOST_LIBRARY_PATH}:/library
+      - ${RUTORRENT_HOST_DOWNLOADS_PATH}:/downloads
+    restart: unless-stopped
+
+  radarr:
+    image: ghcr.io/linuxserver/radarr
+    container_name: "${RADARR_CONTAINER_NAME}"
+    environment:
+      - PUID=${RADARR_PUID}
+      - PGID=${RADARR_PGID}
+      - TZ=${RADARR_TIMEZONE}
+    volumes:
+      - /opt/containers/radarr:/config
+      - ${RADARR_HOST_LIBRARY_PATH}:/library
+      - ${RUTORRENT_HOST_DOWNLOADS_PATH}:/downloads
+    restart: unless-stopped
+
+  jackett:
+    image: ghcr.io/linuxserver/jackett
+    container_name: "${JACKETT_CONTAINER_NAME}"
+    environment:
+      - PUID=${JACKETT_PUID}
+      - PGID=${JACKETT_PGID}
+      - TZ=${JACKETT_TIMEZONE}
+    volumes:
+      - /opt/containers/jackett:/config
+    restart: unless-stopped
+
+  rutorrent:
+    image: ghcr.io/linuxserver/rutorrent
+    container_name: "${RUTORRENT_CONTAINER_NAME}"
+    environment:
+      - PUID=${RUTORRENT_PUID}
+      - PGID=${RUTORRENT_PGID}
+    volumes:
+      - /opt/containers/rutorrent:/config
+      - ${RUTORRENT_HOST_DOWNLOADS_PATH}:/downloads
+    ports:
+      - 5000:5000
+      - 51413:51413
+      - 6881:6881/udp
+    restart: unless-stopped
