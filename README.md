@@ -13,7 +13,12 @@ This is my personal server dockerized for everyone's convenience (primarily mine
 
 # Setting Up
 
-1. Create the needed directory. You **must be on the `/opt/dockerized-infrastructure` folder**:
+1. Clone this repository to `/opt/dockerized-infrastructure`.
+```
+git clone https://github.com/liamdemafelix/dockerized-infrastructure.git /opt/dockerized-infrastructure
+```
+
+2. Create the needed directory. You **must be on the `/opt/dockerized-infrastructure` folder**:
 ```
 mkdir /opt/dockerized-infrastructure
 ```

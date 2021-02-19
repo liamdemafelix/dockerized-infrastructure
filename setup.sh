@@ -84,7 +84,16 @@ sed -i "s/%UID%/${PUID}/g" docker-compose.yml
 sed -i "s/%GID%/${PGID}/g" docker-compose.yml
 docker-compose pull
 
+# Fix permissions for this folder
+chown -R ${DOCKER_USER}:${DOCKER_USER} /opt/dockerized-infrastructure
+
+# Set up helper scripts
+chmod +x /opt/dockerized-infrastructure/scripts/start.sh
+ln -s /opt/dockerized-infrastructure/scripts/start.sh /usr/local/bin/start-containers
+chmod +x /opt/dockerized-infrastructure/scripts/stop.sh
+ln -s /opt/dockerized-infrastructure/scripts/stop.sh /usr/local/bin/stop-containers
+
 # Done!
 clear
-echo "Setup complete."
+echo "Setup complete. To start the containers, simply run 'start-containers'. To stop them, simply run 'stop-containers'."
 exit 0

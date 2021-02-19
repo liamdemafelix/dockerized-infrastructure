@@ -35,7 +35,7 @@ sed -i "s/%rutorrent_pass%/${RUTORRENT_PASSWORD}/g" /opt/dockerized-infrastructu
 
 # Replace the Caddyfille
 rm -f /opt/containers/caddy/Caddyfile
-mv -f /opt/dockerized-infrastructure/caddy/Caddyfile.new /opt/containersr/caddy/Caddyfile
+mv -f /opt/dockerized-infrastructure/caddy/Caddyfile.new /opt/containers/caddy/Caddyfile
 
 # Start the containers
-export HOST_IP=$HOST_IP && docker-compose up -d
+export HOST_IP=$HOST_IP && docker-compose -f /opt/dockerized-infrastructure/docker-compose.yml --env-file /opt/dockerized-infrastructure/.env up -d
