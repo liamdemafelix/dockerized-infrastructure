@@ -29,7 +29,7 @@ cp infrastructure.env .env
 4. **IMPORTANT**: Edit the `.env` file to reflect your settings. Please note that `DOCKER_USER` must **not** exist on the system, as it will be automatically created. Additionally, if the paths in the `.env` file already exist, ensure that you `chown` them to `DOCKER_USER` **AFTER** `setup.sh` has run.
 5. Run the setup script:
 ```
-./setup.sh
+chmod +x ./setup.sh && ./setup.sh
 ```
 
 # License
