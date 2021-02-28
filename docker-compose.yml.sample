@@ -5,7 +5,7 @@ version: "3"
 
 services:
   sonarr:
-    image: ghcr.io/linuxserver/sonarr
+    image: ghcr.io/linuxserver/sonarr:preview
     container_name: "${SONARR_CONTAINER_NAME}"
     environment:
       - PUID=%UID%
